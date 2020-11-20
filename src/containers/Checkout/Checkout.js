@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import CheckSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
 import ContactData from "./ContactData/ContactData";
-import * as actions from '../../store/actions/index';
 
 class Checkout extends Component {
   // Handled by redux
@@ -16,7 +15,6 @@ class Checkout extends Component {
 
   componentWillMount() {
     // Handled by redux
-
     // const query = new URLSearchParams(this.props.location.search);
     // const ingredients = {};
     // let price = 0;
@@ -37,10 +35,12 @@ class Checkout extends Component {
     this.props.history.replace("/checkout/contact-data");
   };
   render() {
-    let summary = <Redirect to="/" />
+    let summary = <Redirect to="/" />;
 
     if (this.props.ings) {
-      const purchasedRedirect = this.props.purchased ? <Redirect to="/" /> : null;
+      const purchasedRedirect = this.props.purchased ? (
+        <Redirect to="/" />
+      ) : null;
       summary = (
         <div>
           {purchasedRedirect}
@@ -69,12 +69,12 @@ class Checkout extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     ings: state.burgerBuilder.ingredients,
-    purchased: state.order.purchased
+    purchased: state.order.purchased,
     //price: state.totalPrice
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(Checkout);
