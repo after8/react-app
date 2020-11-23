@@ -48,10 +48,12 @@ export const auth = (email, password, isSignup) => {
       returnSecureToken: true,
     };
     let url =
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDHi55qUdXPR8CTRNnPHedp1HAc_K4J5lY";
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=" +
+      process.env.REACT_APP_FIREBASE_KEY;
     if (!isSignup) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDHi55qUdXPR8CTRNnPHedp1HAc_K4J5lY";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
+        process.env.REACT_APP_FIREBASE_KEY;
     }
     axios
       .post(url, authData)
